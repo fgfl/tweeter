@@ -6,6 +6,6 @@ const MAX_CHAR = 140;
 
 $(document).ready(function() {
   $('.new-tweet textarea').keyup(function() {
-    console.log('keyup: ', MAX_CHAR - $(this).val().length);
+    $(this).siblings('.counter').html(MAX_CHAR - $(this).val().length);
   });
 });
