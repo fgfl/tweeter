@@ -13,8 +13,6 @@ nav {
 
   background-color: #4055a1;
   color: #ffffff;
-
-  /* margin-top: 1.5em; */
 }
 
 .nav-wrapper {
@@ -25,8 +23,6 @@ nav {
   font-family: 'Bungee', cursive;
 }
 
-.new-tweet {
-  font-size: 24px;
-  font-family: 'Source Sans Pro', sans-serif;
+.nav-right {
   float: right;
 }
