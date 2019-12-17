@@ -6,6 +6,15 @@ const MAX_CHAR = 140;
 
 $(document).ready(function() {
   $('.new-tweet textarea').keyup(function() {
-    $(this).siblings('.counter').html(MAX_CHAR - $(this).val().length);
+    const counter = $(this).siblings('.counter');
+    const charsRemaining = MAX_CHAR - $(this).val().length;
+
+    if (charsRemaining < 0) {
+      counter.addClass('over-char-limit');
+    } else {
+      counter.removeClass('over-char-limit');
+    }
+
+    counter.html(charsRemaining);
   });
 });

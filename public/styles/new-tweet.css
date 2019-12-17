@@ -26,3 +26,7 @@
 .new-tweet .counter {
   float: right;
 }
+
+.over-char-limit {
+  color: #f13c1f;
+}
