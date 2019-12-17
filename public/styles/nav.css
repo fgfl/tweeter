@@ -1,0 +1,32 @@
+
+nav {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 1000;
+  height: 120px;
+
+  padding-top: 1.5em;
+  padding-left: 1.5em;
+  padding-right: 1.5em;
+
+  background-color: #4055a1;
+  color: #ffffff;
+
+  /* margin-top: 1.5em; */
+}
+
+.nav-wrapper {
+  height: 120px;
+}
+
+.nav-logo {
+  font-family: 'Bungee', cursive;
+}
+
+.new-tweet {
+  font-size: 24px;
+  font-family: 'Source Sans Pro', sans-serif;
+  float: right;
+}

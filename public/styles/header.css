@@ -1,0 +1,8 @@
+.header {
+  width: 100%;
+  height: 400px;
+  position: relative;
+  text-align: center;
+  background-color: #d79820;
+  background-image: url("../images/ps-neutral.png");
+}
