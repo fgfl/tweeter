@@ -18,7 +18,7 @@
 }
 
 .tweet .name {
-  flex-basis: 2 1 auto;
+  /* flex-basis: 2 1 auto; */
   margin: auto;
   display: inline;
 }
