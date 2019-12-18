@@ -11,24 +11,6 @@ const daysElapsed = (date) => {
   return elapsed.toFixed(0);
 }
 
-/**
- * Append the tweet HTML to the #tweets-container
- * @param {string} $tweet single tweet element (HTML)
- */
- const renderTweet = ($tweet) => {
-  $('#tweets-container').prepend($tweet);
- };
-
- /**
-  * Appends a list of tweets to the #tweet-container
-  * @param {array} arrOfTweets array of tweet elements
-  */
- const renderTweets = (arrOfTweets) => {
-  for (const $tweet of arrOfTweets) {
-    renderTweet($tweet);
-  }
- };
-
  /**
   * Returns the HTML text that the browser can use to render the tweet
   * @param {object} tweet tweet object from the server databae
@@ -64,25 +46,45 @@ const createTweetElement = (tweet) => {
   return tweetElm;
 };
 
+/**
+ * Append the tweet HTML to the #tweets-container
+ * @param {string} $tweet single tweet object
+ */
+ const renderTweet = ($tweet) => {
+  $('#tweets-container').prepend(createTweetElement($tweet));
+ };
 
+ /**
+  * Appends a list of tweets to the #tweet-container
+  * @param {array} arrOfTweets array of tweet objects
+  */
+ const renderTweets = (arrOfTweets) => {
+  for (const tweet of arrOfTweets) {
+    renderTweet(tweet);
+  }
+ };
+
+
+ const failToLoadTweet = (err) => {
+    alert('Failed to load tweets.', err);
+ };
+
+// ==== DOCUMENT READY =====
 $(document).ready(function() {
-  // $.ajax({
-  //   method: 'GET',
-  //   url: '/tweets',
-  // })
-  // Same as using above ajax request (https://api.jquery.com/jQuery.get/)
-  $.get('/tweets')
-    .then((tweets) => {
-      const arrOfTweets = [];
-      for (const tweet of tweets) {
-        arrOfTweets.push(createTweetElement(tweet));
-      }
-      renderTweets(arrOfTweets);
-    })
-    .fail((err) => {
-      alert('Failed to load tweets.', err);
-    });
-
+  // call this right away to load all tweets
+  const loadTweets = (() => {
+    // $.ajax({
+    //   method: 'GET',
+    //   url: '/tweets',
+    // })
+    // Same as using above ajax request (https://api.jquery.com/jQuery.get/)
+    $.get('/tweets')
+      .then((tweets) => {
+        console.log(tweets)
+        renderTweets(tweets);
+      })
+      .fail(failToLoadTweet);
+  })();
 
   $('.new-tweet form').submit(function(event) {
     event.preventDefault();
@@ -98,8 +100,9 @@ $(document).ready(function() {
         });
       })
       .then((res) => {
-        const ourTweet = [createTweetElement(res[res.length - 1])];
-        renderTweets(ourTweet);
+        const ourTweet = res[res.length - 1];
+        renderTweet(ourTweet);
       })
+      .fail(failToLoadTweet);
   });
 });
