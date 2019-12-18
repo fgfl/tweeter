@@ -13,7 +13,7 @@ const daysElapsed = (date) => {
 
  const renderTweets = (arrOfTweets) => {
   for (const $tweet of arrOfTweets) {
-    $('#tweets-container').append($tweet);
+    $('#tweets-container').prepend($tweet);
   }
  };
 
@@ -49,18 +49,6 @@ const createTweetElement = (tweet) => {
   return tweetElm;
 };
 
-// Test / driver code (temporary). Eventually will get this from the server.
-const tweetData = {
-    "user": {
-      "name": "Newton",
-      "avatars": "https://i.imgur.com/73hZDYK.png",
-        "handle": "@SirIsaac"
-      },
-    "content": {
-        "text": "If I have seen further it is by standing on the shoulders of giants"
-      },
-    "created_at": 1461116232227
- }
 
 $(document).ready(function() {
   const arrOfTweets = [];
@@ -73,4 +61,25 @@ $(document).ready(function() {
     renderTweets(arrOfTweets);
   });
 
+
+  $('.new-tweet form').submit(function(event) {
+    event.preventDefault();
+    console.log('in click', $.ajax, $(this).children('textarea').serialize())
+    $.ajax({
+      method: 'POST',
+      url: '/tweets',
+      data: $(this).children('textarea').serialize(),
+    })
+      .then(() => {
+        return $.ajax({
+          method: 'GET',
+          url: '/tweets'
+        });
+      })
+      .then((res) => {
+        console.log('after get ',res)
+        const ourTweet = [createTweetElement(res[res.length - 1])];
+        renderTweets(ourTweet);
+      })
+  });
 });
