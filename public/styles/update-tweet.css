@@ -1,0 +1,44 @@
+.tweet {
+  border: 3px solid #5e5b53;
+  opacity: 0.8;
+}
+
+.tweet:hover {
+  opacity: 1;
+}
+
+.tweet header {
+  width: 100%;
+  border: 2px solid red;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tweet .name {
+  flex-basis: 2 1 auto;
+  margin: auto;
+  display: inline;
+}
+
+.tweet .msg {
+  border-bottom: 2px solid  #5e5b53;
+  width: 95%;
+  margin: 0 auto;
+}
+
+.tweet .handle {
+  opacity: 0;
+}
+
+.tweet:hover .handle {
+  opacity: 0.8;
+}
+
+.tweet footer {
+  width: 100%;
+  border: 2px solid red;
+  display: flex;
+  justify-content: space-between;
+}

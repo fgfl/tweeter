@@ -1,7 +1,3 @@
-/* .new-tweet{
-  position: relative;
-} */
-
 .new-tweet textarea {
   resize: vertical;
   overflow: auto;
@@ -13,7 +9,6 @@
   background-color: transparent;
   border: none;
   border-bottom: 3px solid #555149;
-  /* padding: 5px; */
   min-height: 2.5em;
 }
 
