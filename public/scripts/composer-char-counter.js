@@ -7,12 +7,16 @@ const MAX_CHAR = 140;
 $(document).ready(function() {
   $('.new-tweet textarea').keyup(function() {
     const counter = $(this).siblings('.counter');
+    const submitButton = $(this).siblings('input');
     const charsRemaining = MAX_CHAR - $(this).val().length;
 
     if (charsRemaining < 0) {
-      counter.addClass('over-char-limit');
+      counter.addClass('counter-over-char-limit');
+      submitButton.addClass('submit-over-char-limit');
+
     } else {
-      counter.removeClass('over-char-limit');
+      counter.removeClass('counter-over-char-limit');
+      submitButton.removeClass('submit-over-char-limit');
     }
 
     counter.html(charsRemaining);

@@ -22,6 +22,10 @@
   float: right;
 }
 
-.over-char-limit {
+.counter-over-char-limit {
   color: #f13c1f;
+}
+
+.submit-over-char-limit {
+  filter: grayscale(80%);
 }

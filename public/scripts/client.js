@@ -69,6 +69,14 @@ const createTweetElement = (tweet) => {
     alert('Failed to load tweets.', err);
  };
 
+ const notifyTweetTooLong = () => {
+   alert(`The tweet is over the ${MAX_CHAR} character limit.`);
+ }
+
+ const notifyTweetEmpty = () => {
+   alert(`The tweet is empty.`);
+ }
+
 // ==== DOCUMENT READY =====
 $(document).ready(function() {
   // call this right away to load all tweets
@@ -80,7 +88,6 @@ $(document).ready(function() {
     // Same as using above ajax request (https://api.jquery.com/jQuery.get/)
     $.get('/tweets')
       .then((tweets) => {
-        console.log(tweets)
         renderTweets(tweets);
       })
       .fail(failToLoadTweet);
@@ -88,21 +95,29 @@ $(document).ready(function() {
 
   $('.new-tweet form').submit(function(event) {
     event.preventDefault();
-    $.ajax({
-      method: 'POST',
-      url: '/tweets',
-      data: $(this).children('textarea').serialize(),
-    })
-      .then(() => {
-        return $.ajax({
-          method: 'GET',
-          url: '/tweets'
-        });
+    const textarea = $(this).children('textarea');
+
+    if (textarea.val().length > MAX_CHAR) {
+      notifyTweetTooLong();
+    } else if (textarea.val() === '' || textarea.val() === null) {
+      notifyTweetEmpty();
+    } else {
+      $.ajax({
+        method: 'POST',
+        url: '/tweets',
+        data: textarea.serialize(),
       })
-      .then((res) => {
-        const ourTweet = res[res.length - 1];
-        renderTweet(ourTweet);
-      })
-      .fail(failToLoadTweet);
+        .then(() => {
+          return $.ajax({
+            method: 'GET',
+            url: '/tweets'
+          });
+        })
+        .then((res) => {
+          const ourTweet = res[res.length - 1];
+          renderTweet(ourTweet);
+        })
+        .fail(failToLoadTweet);
+      }
   });
 });
