@@ -11,14 +11,29 @@ const daysElapsed = (date) => {
   return elapsed.toFixed(0);
 }
 
+/**
+ * Append the tweet HTML to the #tweets-container
+ * @param {string} $tweet single tweet element (HTML)
+ */
+ const renderTweet = ($tweet) => {
+  $('#tweets-container').prepend($tweet);
+ };
+
+ /**
+  * Appends a list of tweets to the #tweet-container
+  * @param {array} arrOfTweets array of tweet elements
+  */
  const renderTweets = (arrOfTweets) => {
   for (const $tweet of arrOfTweets) {
-    $('#tweets-container').prepend($tweet);
+    renderTweet($tweet);
   }
  };
 
+ /**
+  * Returns the HTML text that the browser can use to render the tweet
+  * @param {object} tweet tweet object from the server databae
+  */
 const createTweetElement = (tweet) => {
-
   const avatar = tweet.user.avatars;
   const name = tweet.user.name;
   const handle = tweet.user.handle;
@@ -51,20 +66,26 @@ const createTweetElement = (tweet) => {
 
 
 $(document).ready(function() {
-  const arrOfTweets = [];
-  const tweets = $.get('/tweets', function(data, status) {
-    if (status === 'success') {
-      for (const tweet of data) {
+  // $.ajax({
+  //   method: 'GET',
+  //   url: '/tweets',
+  // })
+  // Same as using above ajax request (https://api.jquery.com/jQuery.get/)
+  $.get('/tweets')
+    .then((tweets) => {
+      const arrOfTweets = [];
+      for (const tweet of tweets) {
         arrOfTweets.push(createTweetElement(tweet));
       }
-    }
-    renderTweets(arrOfTweets);
-  });
+      renderTweets(arrOfTweets);
+    })
+    .fail((err) => {
+      alert('Failed to load tweets.', err);
+    });
 
 
   $('.new-tweet form').submit(function(event) {
     event.preventDefault();
-    console.log('in click', $.ajax, $(this).children('textarea').serialize())
     $.ajax({
       method: 'POST',
       url: '/tweets',
@@ -77,7 +98,6 @@ $(document).ready(function() {
         });
       })
       .then((res) => {
-        console.log('after get ',res)
         const ourTweet = [createTweetElement(res[res.length - 1])];
         renderTweets(ourTweet);
       })
