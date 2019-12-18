@@ -5,6 +5,11 @@
  * icons Font Awesome. License: https://fontawesome.com/license
  */
 
+const daysElapsed = (date) => {
+  const elapsed = Math.round(Date.now() - date) / (1000 * 60 * 60 *24); 
+  return elapsed.toFixed(0);
+}
+
 $(document).ready(function() {
   const tweets = $.get('/tweets', function(data, status) {
     if (status === 'success') {
@@ -12,6 +17,7 @@ $(document).ready(function() {
         const avatar = tweet.user.avatars;
         const name = tweet.user.name;
         const handle = tweet.user.handle;
+        // let date = daysElapsed(tweet.created_at);
         const date = new Date(tweet.created_at).toDateString();
         const text = tweet.content.text;
 
