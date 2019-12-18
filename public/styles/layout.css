@@ -21,11 +21,14 @@ body {
   font-family: 'Source Sans Pro', sans-serif;
 }
 
-main {
+.container {
   width: 90%;
   margin: 0 auto;
 }
 
+.section {
+  margin: 1em auto
+}
 
 
 
