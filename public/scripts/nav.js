@@ -10,6 +10,6 @@ $(document).ready(function() {
     $('#new-tweet').slideToggle('slow');
     $('html, body').animate({
       scrollTop: $('#new-tweet').offset().top - $('nav').outerHeight()
-    }, 500);
+    }, 'slow');
   });
 });
