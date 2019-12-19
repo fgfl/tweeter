@@ -1,5 +1,7 @@
 
 nav {
+  grid-area: nav;
+
   position: fixed;
   left: 0;
   right: 0;
@@ -11,17 +13,13 @@ nav {
   padding-left: 1.5em;
   padding-right: 1.5em;
 
-  background-color: #4055a1;
+  background-color: none;
   color: #ffffff;
 
   display: grid;
   grid-template-columns: 150px 1fr 200px;
   grid-template-rows: 50% 50%;
   justify-content: space-between;
-}
-
-.nav-wrapper {
-  height: 120px;
 }
 
 .nav-logo {
@@ -38,7 +36,7 @@ nav {
 }
 
 .nav-right:hover {
-  background-color: rgb(106, 83, 238) ;
+  background-color: rgb(106, 83, 238);
 }
 
 .chev {
@@ -47,4 +45,11 @@ nav {
 
   grid-area: span 1 / span 1 / -1 / -1;
   justify-self: center;
+}
+
+/* Desktop style */
+@media only screen and (min-width:768px) {
+  nav {
+    background-color: #4055a1;
+  }
 }

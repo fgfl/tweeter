@@ -1,5 +1,6 @@
 .profile {
-  margin-top: 120px;
+  grid-area: nav;
+
   width: 100%;
   height: 400px;
   position: relative;
@@ -10,4 +11,12 @@
 
 .profile img {
   margin-bottom: 1em;
+}
+
+/* Desktop style */
+@media only screen and (min-width: 768px) {
+  .profile {
+    grid-area: header;
+    justify-content: center;
+  }
 }

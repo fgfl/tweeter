@@ -1,0 +1,12 @@
+
+.container {
+  grid-area: main;
+  /* grid-area: 3 / 1 / span 1 / span 1; */
+}
+
+/* Desktop style */
+/* @media only sceen and (min-width: 1024px) {
+  .container {
+    grid-area: 3 / 1 / span 1 / span 1;
+  }
+} */
