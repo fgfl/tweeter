@@ -80,7 +80,8 @@ const notifyTweetEmpty = () => {
 // ==== DOCUMENT READY =====
 $(document).ready(function() {
   // call this right away to load all tweets
-  const loadTweets = (() => {
+  let loadTweets;
+  (loadTweets = function()  {
     // $.ajax({
     //   method: 'GET',
     //   url: '/tweets',
@@ -102,11 +103,7 @@ $(document).ready(function() {
     } else if (textarea.val() === '' || textarea.val() === null) {
       notifyTweetEmpty();
     } else {
-      $.ajax({
-        method: 'POST',
-        url: '/tweets',
-        data: textarea.serialize(),
-      })
+      $.post('/tweets', textarea.serialize())
         .then(() => {
           textarea.val('');
           return $.get('/tweets');
