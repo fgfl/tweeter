@@ -9,7 +9,7 @@
 const daysElapsed = (date) => {
   const elapsed = Math.round(Date.now() - date) / (1000 * 60 * 60 *24); 
   return elapsed.toFixed(0);
-}
+};
 
  /**
   * Returns the HTML text that the browser can use to render the tweet
@@ -47,35 +47,35 @@ const createTweetElement = (tweet) => {
 };
 
 /**
- * Append the tweet HTML to the #tweets-container
- * @param {string} $tweet single tweet object
- */
- const renderTweet = ($tweet) => {
+* Append the tweet HTML to the #tweets-container
+* @param {string} $tweet single tweet object
+*/
+const renderTweet = ($tweet) => {
   $('#tweets-container').prepend(createTweetElement($tweet));
- };
+};
 
- /**
-  * Appends a list of tweets to the #tweet-container
-  * @param {array} arrOfTweets array of tweet objects
-  */
- const renderTweets = (arrOfTweets) => {
+/**
+* Appends a list of tweets to the #tweet-container
+* @param {array} arrOfTweets array of tweet objects
+*/
+const renderTweets = (arrOfTweets) => {
   for (const tweet of arrOfTweets) {
     renderTweet(tweet);
   }
- };
+};
 
 
- const failToLoadTweet = (err) => {
-    alert('Failed to load tweets.', err);
- };
+const failToLoadTweet = (err) => {
+  alert('Failed to load tweets.', err);
+};
 
- const notifyTweetTooLong = () => {
-   alert(`The tweet is over the ${MAX_CHAR} character limit.`);
- }
+const notifyTweetTooLong = () => {
+  alert(`The tweet is over the ${MAX_CHAR} character limit.`);
+}
 
- const notifyTweetEmpty = () => {
-   alert(`The tweet is empty.`);
- }
+const notifyTweetEmpty = () => {
+  alert(`The tweet is empty.`);
+}
 
 // ==== DOCUMENT READY =====
 $(document).ready(function() {
@@ -108,16 +108,14 @@ $(document).ready(function() {
         data: textarea.serialize(),
       })
         .then(() => {
-          return $.ajax({
-            method: 'GET',
-            url: '/tweets'
-          });
+          textarea.val('');
+          return $.get('/tweets');
         })
         .then((res) => {
           const ourTweet = res[res.length - 1];
           renderTweet(ourTweet);
         })
         .fail(failToLoadTweet);
-      }
+    }
   });
 });
