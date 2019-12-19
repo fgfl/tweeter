@@ -72,16 +72,27 @@ const renderTweets = (arrOfTweets) => {
 
 
 const failToLoadTweet = (err) => {
-  alert('Failed to load tweets.', err);
+  const errBox = $('.error-box');
+  errBox.html('Failed to load tweets.')
+  errBox.slideDown('fast');
 };
 
 const notifyTweetTooLong = () => {
-  alert(`The tweet is over the ${MAX_CHAR} character limit.`);
+  const errBox = $('.error-box');
+  errBox.html(`The tweet is over the ${MAX_CHAR} character limit.`);
+  $('.error-box').slideDown('fast');
 }
 
 const notifyTweetEmpty = () => {
-  alert(`The tweet is empty.`);
+  const errBox = $('.error-box');
+  errBox.html(`The tweet is empty.`);
+  $('.error-box').slideDown('fast');
 }
+
+const hideErrorBox = () => {
+  const errBox = $('.error-box');
+  $('.error-box').slideUp('fast');
+};
 
 // ==== DOCUMENT READY =====
 $(document).ready(function() {
@@ -104,6 +115,8 @@ $(document).ready(function() {
     event.preventDefault();
     const textarea = $(this).children('textarea');
 
+    hideErrorBox();
+
     if (textarea.val().length > MAX_CHAR) {
       notifyTweetTooLong();
     } else if (textarea.val() === '' || textarea.val() === null) {
@@ -112,12 +125,10 @@ $(document).ready(function() {
       $.post('/tweets', textarea.serialize())
         .then(() => {
           textarea.val('');
-          console.log('post')
           return $.get('/tweets');
         })
         .then((res) => {
           const ourTweet = res[res.length - 1];
-          console.log('get')
           renderTweet(ourTweet);
         })
         .fail(failToLoadTweet);
