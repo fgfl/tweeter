@@ -11,6 +11,12 @@ const daysElapsed = (date) => {
   return elapsed.toFixed(0);
 };
 
+const escape = (str) => {
+  let div = document.createElement('div');
+  div.appendChild(document.createTextNode(str));
+  return div.innerHTML;
+}
+
  /**
   * Returns the HTML text that the browser can use to render the tweet
   * @param {object} tweet tweet object from the server databae
@@ -21,7 +27,7 @@ const createTweetElement = (tweet) => {
   const handle = tweet.user.handle;
   // let date = daysElapsed(tweet.created_at);
   const date = new Date(tweet.created_at).toDateString();
-  const text = tweet.content.text;
+  const text = escape(tweet.content.text);
 
   const tweetElm = `
     <article class="section tweet">
@@ -106,10 +112,12 @@ $(document).ready(function() {
       $.post('/tweets', textarea.serialize())
         .then(() => {
           textarea.val('');
+          console.log('post')
           return $.get('/tweets');
         })
         .then((res) => {
           const ourTweet = res[res.length - 1];
+          console.log('get')
           renderTweet(ourTweet);
         })
         .fail(failToLoadTweet);
