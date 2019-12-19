@@ -30,7 +30,7 @@ const createTweetElement = (tweet) => {
   const text = escape(tweet.content.text);
 
   const tweetElm = `
-    <article class="section tweet">
+    <article class="tweet">
       <header>
         <div>
           <img src="${avatar}"><h3 class="name">${name}</h3>

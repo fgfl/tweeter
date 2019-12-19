@@ -3,6 +3,9 @@
   padding-left: 3%;
   padding-right: 3%;
   opacity: 0.8;
+
+  margin-top: 1em;
+  margin-bottom: 1em;
 }
 
 .tweet:hover {
