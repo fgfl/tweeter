@@ -35,11 +35,10 @@ nav {
   width: auto;
   grid-area: 1 / 2 / -1 / -1;
   justify-self: flex-end;
-  /* align-self: flex-start; */
 }
 
 .nav-right:hover {
-  color: rgb(40, 204, 155);
+  background-color: rgb(106, 83, 238) ;
 }
 
 .chev {
