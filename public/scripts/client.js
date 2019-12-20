@@ -7,8 +7,37 @@
  */
 
 const daysElapsed = (date) => {
-  const elapsed = Math.round(Date.now() - date) / (1000 * 60 * 60 *24); 
-  return elapsed.toFixed(0);
+  const DAYS_PER_WEEK = 7;
+  const now = new Date(Date.now());
+  const tweetTime = new Date(date);
+  const elapsedYear = now.getFullYear() - tweetTime.getFullYear();
+  const elapsedMonth = now.getMonth() - tweetTime.getMonth();
+  const dateDiff = now.getDate() - tweetTime.getDate();
+  const hourDiff = now.getHours() - tweetTime.getHours();
+  const minDiff = now.getMinutes() - tweetTime.getMinutes();
+  const secDiff = now.getSeconds() - tweetTime.getSeconds();
+
+  let elapsedStr = '';
+
+  // this doesn't account for times that cross sec, min, hour, etc. boundaries but are full min, hour, day, etc
+  if (elapsedYear > 0) {
+    elapsedStr = `${elapsedYear} year${elapsedYear > 1 ? 's' : ''} ago`;
+  } else if (elapsedMonth > 0 || (elapsedMonth > 0 && dateDiff >= 0)) {
+    elapsedStr = `${elapsedMonth} month${elapsedMonth > 1 ? 's': ''} ago`;
+  } else if (dateDiff >= DAYS_PER_WEEK) {
+    const weeks = Math.floor(dateDiff / DAYS_PER_WEEK);
+    elapsedStr = `${weeks} week${weeks > 1 ? 's' : ''} ago`;
+  } else if (dateDiff > 0 || (dateDiff > 0 && hourDiff >= 0)) {
+    elapsedStr = `${dateDiff} day${dateDiff > 1 ? 's' : ''} ago`;
+  } else if (hourDiff > 0 || (hourDiff === 1 && minDiff >= 0)) {
+    elapsedStr = `${hourDiff} hours ago`;
+  } else if (minDiff > 0 || (minDiff === 1 && secDiff >= 0)) {
+    elapsedStr = `${minDiff} minutes ago`;
+  } else {
+    elapsedStr = 'now';
+  }
+  
+  return elapsedStr;
 };
 
 const escape = (str) => {
@@ -25,8 +54,8 @@ const createTweetElement = (tweet) => {
   const avatar = tweet.user.avatars;
   const name = tweet.user.name;
   const handle = tweet.user.handle;
-  // let date = daysElapsed(tweet.created_at);
-  const date = new Date(tweet.created_at).toDateString();
+  let date = daysElapsed(tweet.created_at);
+  // const date = new Date(tweet.created_at).toDateString();
   const text = escape(tweet.content.text);
 
   const tweetElm = `
