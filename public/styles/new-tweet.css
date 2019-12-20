@@ -3,6 +3,7 @@
   margin-top: 1em;
   margin-bottom: 1em;
 }
+
 .new-tweet textarea {
   resize: vertical;
   overflow: auto;

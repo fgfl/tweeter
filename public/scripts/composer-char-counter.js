@@ -21,4 +21,20 @@ $(document).ready(function() {
     counter.html(charsRemaining);
   });
 
+  $('.to-top').click(function() {
+    // Scroll to top of page
+    $('html, body').animate({
+      scrollTop: $('body').offset().top,
+    }, 'slow');
+  });
+
+  $(window).scroll(function() {
+    const toTopButton = $('.to-top');
+    if ($(this).scrollTop() > 100) {
+      toTopButton.slideDown();
+    } else {
+      toTopButton.slideUp();
+    }
+  });
+
 });
