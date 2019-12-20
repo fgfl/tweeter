@@ -32,16 +32,20 @@ The app uses CSS grids and will dynamically resize when the window size changes.
 ![Tweeter start page](https://raw.githubusercontent.com/fgfl/tweeter/master/docs/tweeter-start-page.png)
 
 This is the landing page for the Tweeter app. The tweets from the database are loaded on the side.
+
 ![Compose Tweet](https://raw.githubusercontent.com/fgfl/tweeter/master/docs/tweeter-compose-tweet.png)
 
 Clicking on the top right button will bring out the Compose Tweet form.
+
 ![Empty tweet message](https://raw.githubusercontent.com/fgfl/tweeter/master/docs/tweeter-tweet-empty.png)
 ![Tweet is too long message](https://raw.githubusercontent.com/fgfl/tweeter/master/docs/tweeter-tweet-overlength.png)
 
 If a user tries to submit an empty tweet or a tweet that is too long, then a error message will notify the user of the problem. The character counter on the bottom right will let the user know how many characters they have remaining. The tweet button will also be greyed out when the tweet is too long.
+
 ![New tweet submitted](https://raw.githubusercontent.com/fgfl/tweeter/master/docs/tweeter-new-tweet.png)
 
 After a valid tweet is submitted, the new tweet will be displayed in the feed. Hovering over the tweet will show the user's handle.
+
 ![Mobile layout](https://raw.githubusercontent.com/fgfl/tweeter/master/docs/tweeter-mobile.png)
 
 Once the width of the window reaches the threshold. The layout will shift to a more mobile friendly layout and take up the whole width.
