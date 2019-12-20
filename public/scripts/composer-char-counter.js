@@ -13,7 +13,6 @@ $(document).ready(function() {
     if (charsRemaining < 0) {
       counter.addClass('counter-over-char-limit');
       submitButton.addClass('submit-over-char-limit');
-
     } else {
       counter.removeClass('counter-over-char-limit');
       submitButton.removeClass('submit-over-char-limit');

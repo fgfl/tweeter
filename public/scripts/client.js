@@ -40,6 +40,10 @@ const daysElapsed = (date) => {
   return elapsedStr;
 };
 
+/**
+ * Escape HTML text to prevent XSS
+ * @param {string} str String to escape
+ */
 const escape = (str) => {
   let div = document.createElement('div');
   div.appendChild(document.createTextNode(str));
