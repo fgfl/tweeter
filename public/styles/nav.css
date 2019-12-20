@@ -13,16 +13,20 @@ nav {
   padding-left: 1.5em;
   padding-right: 1.5em;
 
-  background-color: none;
+  background-color: #4055a1;
   color: #ffffff;
 
   display: grid;
   grid-template-columns: 150px 1fr 200px;
   grid-template-rows: 50% 50%;
+  grid-template-areas:
+    'logo . create-tweet'
+    '. . chevron';
   justify-content: space-between;
 }
 
 .nav-logo {
+  grid-area: logo;
   font-family: 'Bungee', cursive;
   grid-column: 1 / 1;
   justify-self: flex-start;
@@ -30,27 +34,21 @@ nav {
 }
 
 .nav-right {
+  grid-area: create-tweet;
   width: auto;
-  grid-area: 1 / 2 / -1 / -1;
+  grid-column: span 2;
   justify-self: flex-end;
 }
 
 .nav-right:hover {
   background-color: rgb(106, 83, 238);
+  border: 2px solid #141f46;
+  border-radius: 1ch;
 }
 
 .chev {
-  width: 30px;
-  height: auto;
-  fill: red;
+  grid-area: chevron;
+  max-height: 100%;
 
-  grid-area: span 1 / span 1 / -1 / -1;
   justify-self: center;
-}
-
-/* Desktop style */
-@media only screen and (min-width:768px) {
-  nav {
-    background-color: #4055a1;
-  }
 }
