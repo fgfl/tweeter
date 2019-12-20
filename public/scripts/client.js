@@ -6,7 +6,7 @@
  * icons Font Awesome. License: https://fontawesome.com/license
  */
 
-const daysElapsed = (date) => {
+const timeElapsed = (date) => {
   const DAYS_PER_WEEK = 7;
   const now = new Date(Date.now());
   const tweetTime = new Date(date);
@@ -58,8 +58,7 @@ const createTweetElement = (tweet) => {
   const avatar = tweet.user.avatars;
   const name = tweet.user.name;
   const handle = tweet.user.handle;
-  let date = daysElapsed(tweet.created_at);
-  // const date = new Date(tweet.created_at).toDateString();
+  const date = timeElapsed(tweet.created_at);
   const text = escape(tweet.content.text);
 
   const tweetElm = `
