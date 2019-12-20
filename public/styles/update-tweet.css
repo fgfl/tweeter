@@ -21,13 +21,15 @@
 }
 
 .tweet .name {
-  /* flex-basis: 2 1 auto; */
   margin: auto;
   display: inline;
 }
 
 .tweet .msg {
   border-bottom: 2px solid  #5e5b53;
+  word-wrap: break-word;
+  min-width: 100%;
+  width: 0;
   margin: 0 auto;
 }
 

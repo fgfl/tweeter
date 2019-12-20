@@ -99,10 +99,6 @@ $(document).ready(function() {
   // call this right away to load all tweets
   let loadTweets;
   (loadTweets = function()  {
-    // $.ajax({
-    //   method: 'GET',
-    //   url: '/tweets',
-    // })
     // Same as using above ajax request (https://api.jquery.com/jQuery.get/)
     $.get('/tweets')
       .then((tweets) => {
