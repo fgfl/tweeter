@@ -121,6 +121,7 @@ $(document).ready(function() {
       $.post('/tweets', textarea.serialize())
         .then(() => {
           textarea.val('');
+          $('.counter').html(MAX_CHAR);
           return $.get('/tweets');
         })
         .then((res) => {
