@@ -22,18 +22,25 @@ $(document).ready(function() {
   });
 
   $('.to-top').click(function() {
-    // Scroll to top of page
     $('html, body').animate({
       scrollTop: $('body').offset().top,
     }, 'slow');
+
+    $('#new-tweet').slideDown('slow', function() {
+      $('.new-tweet textarea').focus();
+    });
+
   });
 
   $(window).scroll(function() {
     const toTopButton = $('.to-top');
+    const navButton = $('.nav-right');
     if ($(this).scrollTop() > 100) {
       toTopButton.slideDown();
+      navButton.slideUp();
     } else {
       toTopButton.slideUp();
+      navButton.slideDown();
     }
   });
 
