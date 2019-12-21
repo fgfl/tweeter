@@ -2,7 +2,7 @@
  * Client-side JS logic goes here
  * jQuery is already loaded
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
- * 
+ *
  * icons Font Awesome. License: https://fontawesome.com/license
  */
 
@@ -23,7 +23,7 @@ const timeElapsed = (date) => {
   if (elapsedYear > 0) {
     elapsedStr = `${elapsedYear} year${elapsedYear > 1 ? 's' : ''} ago`;
   } else if (elapsedMonth > 0 || (elapsedMonth > 0 && dateDiff >= 0)) {
-    elapsedStr = `${elapsedMonth} month${elapsedMonth > 1 ? 's': ''} ago`;
+    elapsedStr = `${elapsedMonth} month${elapsedMonth > 1 ? 's' : ''} ago`;
   } else if (dateDiff >= DAYS_PER_WEEK) {
     const weeks = Math.floor(dateDiff / DAYS_PER_WEEK);
     elapsedStr = `${weeks} week${weeks > 1 ? 's' : ''} ago`;
@@ -48,9 +48,9 @@ const escape = (str) => {
   let div = document.createElement('div');
   div.appendChild(document.createTextNode(str));
   return div.innerHTML;
-}
+};
 
- /**
+/**
   * Returns the HTML text that the browser can use to render the tweet
   * @param {object} tweet tweet object from the server databae
   */
@@ -103,9 +103,9 @@ const renderTweets = (arrOfTweets) => {
 };
 
 
-const failToLoadTweet = (err) => {
+const failToLoadTweet = () => {
   const errBox = $('.error-box');
-  errBox.html('Failed to load tweets.')
+  errBox.html('Failed to load tweets.');
   errBox.slideDown('fast');
 };
 
@@ -113,16 +113,15 @@ const notifyTweetTooLong = () => {
   const errBox = $('.error-box');
   errBox.html(`The tweet is over the ${MAX_CHAR} character limit.`);
   $('.error-box').slideDown('fast');
-}
+};
 
 const notifyTweetEmpty = () => {
   const errBox = $('.error-box');
   errBox.html(`The tweet is empty.`);
   $('.error-box').slideDown('fast');
-}
+};
 
 const hideErrorBox = () => {
-  const errBox = $('.error-box');
   $('.error-box').slideUp('fast');
 };
 
