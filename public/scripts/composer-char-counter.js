@@ -35,7 +35,8 @@ $(document).ready(function() {
   $(window).scroll(function() {
     const toTopButton = $('.to-top');
     const navButton = $('.nav-right');
-    if ($(this).scrollTop() > 100) {
+    if ($(this).scrollTop() > 50) {
+      toTopButton.removeClass('hidden');
       toTopButton.slideDown();
       navButton.slideUp();
     } else {

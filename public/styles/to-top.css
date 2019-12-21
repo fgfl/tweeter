@@ -2,8 +2,8 @@
   position: fixed;
   bottom: 1em;
   right: 1em;
-  width: 60px;
-  height: 60px;
+  width: 4rem;
+  height: 4rem;
   background-color: rgb(231, 99, 59);
   border-radius: 50%;
   cursor: pointer;
@@ -11,9 +11,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-}
 
-.to-top>p {
   color: white;
   text-align: center;
 }

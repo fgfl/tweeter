@@ -12,7 +12,7 @@ $(document).ready(function() {
     });
 
     $('html, body').animate({
-      scrollTop: $('#new-tweet').offset().top - $('nav').outerHeight()
+      scrollTop: $('.container').offset().top - $('nav').outerHeight()
     }, 'slow');
   });
 });

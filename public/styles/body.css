@@ -6,6 +6,7 @@ body  {
     'nav' 
     'header'
     'main';
+  padding-bottom: 5rem;
 }
 
 @media only screen and (min-width: 768px) {
