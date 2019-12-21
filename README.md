@@ -54,11 +54,12 @@ Once the width of the window reaches the threshold. The layout will shift to a m
 
 - The message showing how long ago the tweet was made is not accurate in edge cases.
   - Solution: switch to a proper time library that can handle these problems. This was not done for this project because I was told to try writing a time function on my own.
+- Slight glitch on the first load of the app. The go to top button has a slight glitch on the first time a user scrolls down.
+  - display was set to flex to center the text, so I couldn't use display:none. I switched to visibility:hidden instead to hide the icon on first load, but the scrollDown() function will hide then unhide it.
 
 ## Possible Future Improvements
 
 - General visual polish. Currently is looks very standard and plain. 
-- Add button to scroll to the top of the page.
 - Add timer to automatically get new tweets periodically instead of requiring the user to refresh the page. This is not needed unless there is more than one user on the server as the user submitted tweets are always displayed.
 - Allow filtering by user if clicking on the user's name or handle.
 - Allow log in or changing name/avatar (requires update to server code) 
