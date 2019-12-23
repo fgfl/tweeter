@@ -112,7 +112,7 @@ const failToLoadTweet = () => {
 const notifyTweetTooLong = () => {
   const errBox = $('.error-box');
   errBox.html(`The tweet is over the ${MAX_CHAR} character limit.`);
-  $('.error-box').slideDown('fast');
+  errBox.slideDown('fast');
 };
 
 const notifyTweetEmpty = () => {
